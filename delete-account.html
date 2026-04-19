@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Delete Account · Aura Free</title>
+<meta name="description" content="Request deletion of your Aura Free account and associated data.">
+<link rel="icon" type="image/png" href="aura-logo.png">
+<meta property="og:title" content="Delete Account · Aura Free">
+<meta property="og:image" content="feature-graphic.png">
+<style>
+  :root {
+    --bg: #fafafa;
+    --surface: #ffffff;
+    --text: #1a1a1a;
+    --muted: #6b6b6b;
+    --border: #e5e5e5;
+    --accent: #8b5cf6;
+    --accent-dark: #6d28d9;
+    --dark-bg: #0a0a0a;
+    --danger: #dc2626;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 16px;
+  }
+  .wrap { max-width: 820px; margin: 0 auto; padding: 0 0 80px; }
+  header.hero {
+    position: relative;
+    text-align: center;
+    margin-bottom: 32px;
+    overflow: hidden;
+    border-radius: 0 0 24px 24px;
+    box-shadow: 0 8px 32px rgba(109, 40, 217, 0.25);
+  }
+  header.hero .banner {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1024 / 500;
+    object-fit: cover;
+  }
+  .content-wrap { padding: 0 24px; }
+  .lang-switch {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin: 24px 0 32px;
+    flex-wrap: wrap;
+  }
+  .lang-switch button {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: 500;
+  }
+  .lang-switch button.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: white;
+  }
+  .lang-switch button:hover:not(.active) {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+  h1 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  h2 {
+    font-size: 22px;
+    font-weight: 600;
+    margin: 32px 0 12px;
+    color: var(--text);
+  }
+  p { margin-bottom: 16px; color: var(--text); }
+  .subtitle {
+    color: var(--muted);
+    font-size: 15px;
+    margin-bottom: 32px;
+  }
+  ul, ol {
+    margin-left: 24px;
+    margin-bottom: 16px;
+  }
+  li { margin-bottom: 8px; }
+  strong { color: var(--text); font-weight: 600; }
+  a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  a:hover { text-decoration: underline; }
+  .email-box {
+    background: linear-gradient(135deg, #f3f0ff 0%, #ede9fe 100%);
+    border: 1px solid var(--accent);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin: 24px 0;
+    text-align: center;
+  }
+  .email-box a {
+    font-size: 20px;
+    font-weight: 600;
+  }
+  .notice {
+    background: #fef3c7;
+    border-left: 4px solid #f59e0b;
+    padding: 16px 20px;
+    border-radius: 8px;
+    margin: 24px 0;
+    color: #78350f;
+  }
+  .notice strong { color: #78350f; }
+  .info-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin: 20px 0;
+  }
+  .data-list {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    margin: 16px 0;
+  }
+  .data-list h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--accent-dark);
+  }
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin: 24px 0;
+    font-size: 14px;
+    color: var(--muted);
+  }
+  footer {
+    text-align: center;
+    margin-top: 48px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 13px;
+  }
+  footer .dg-logo {
+    display: block;
+    margin: 0 auto 12px;
+    width: 80px;
+    height: auto;
+    opacity: 0.85;
+  }
+  .lang-content { display: none; }
+  .lang-content.active { display: block; }
+  @media (max-width: 600px) {
+    h1 { font-size: 26px; }
+    h2 { font-size: 19px; }
+    .content-wrap { padding: 0 16px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="hero">
+    <img src="feature-graphic.png" alt="Aura Free" class="banner">
+  </header>
+
+  <div class="content-wrap">
+
+    <div class="lang-switch">
+      <button onclick="setLang('el')" id="btn-el" class="active">Ελληνικά</button>
+      <button onclick="setLang('en')" id="btn-en">English</button>
+      <button onclick="setLang('fr')" id="btn-fr">Français</button>
+      <button onclick="setLang('sv')" id="btn-sv">Svenska</button>
+    </div>
+
+    <!-- ========== ΕΛΛΗΝΙΚΑ ========== -->
+    <div class="lang-content active" id="lang-el">
+      <h1>Διαγραφή Λογαριασμού</h1>
+      <p class="subtitle">Πώς να ζητήσετε τη διαγραφή του λογαριασμού σας και των δεδομένων σας στο Aura Free.</p>
+
+      <h2>🗑️ Αίτημα διαγραφής</h2>
+      <p>Μπορείτε να ζητήσετε τη διαγραφή του λογαριασμού σας και όλων των συσχετισμένων δεδομένων στέλνοντας ένα email από τη διεύθυνση που χρησιμοποιείτε για τη σύνδεση στην εφαρμογή.</p>
+
+      <div class="email-box">
+        📧 <a href="mailto:privacy@aurawellnessapp.com?subject=Account%20Deletion%20Request%20-%20Aura%20Free&body=Γεια%20σας%2C%0A%0AΖητώ%20τη%20διαγραφή%20του%20λογαριασμού%20μου%20και%20όλων%20των%20δεδομένων%20μου%20στο%20Aura%20Free.%0A%0AEmail%20λογαριασμού%3A%20%5Bτο%20email%20σας%5D%0A%0AΕυχαριστώ.">privacy@aurawellnessapp.com</a>
+      </div>
+
+      <h2>📋 Βήματα</h2>
+      <ol>
+        <li>Στείλτε email στο <strong>privacy@aurawellnessapp.com</strong> <strong>από τη διεύθυνση που χρησιμοποιείτε για σύνδεση</strong> στην εφαρμογή.</li>
+        <li>Θέμα: <em>"Account Deletion Request - Aura Free"</em></li>
+        <li>Στο μήνυμα αναφέρετε ρητά ότι θέλετε να διαγραφούν ο λογαριασμός σας και τα δεδομένα σας.</li>
+        <li>Θα λάβετε επιβεβαίωση εντός <strong>7 εργάσιμων ημερών</strong>.</li>
+        <li>Η διαγραφή ολοκληρώνεται εντός <strong>30 ημερών</strong> από την επιβεβαίωση.</li>
+      </ol>
+
+      <h2>🔐 Τι δεδομένα διαγράφονται</h2>
+      <div class="data-list">
+        <h3>Διαγράφονται οριστικά:</h3>
+        <ul>
+          <li>Η διεύθυνση email σας</li>
+          <li>Τα δεδομένα διάθεσης (mood entries)</li>
+          <li>Σημειώσεις και σχόλια που έχετε καταχωρήσει</li>
+          <li>Ρυθμίσεις και προτιμήσεις λογαριασμού</li>
+          <li>Τοπικά δεδομένα στη συσκευή (μέσω απεγκατάστασης εφαρμογής)</li>
+        </ul>
+      </div>
+
+      <div class="data-list">
+        <h3>Διατηρούνται (σε ανώνυμη μορφή):</h3>
+        <ul>
+          <li>Συγκεντρωτικά στατιστικά χρήσης (χωρίς προσωπική ταυτοποίηση)</li>
+          <li>Αρχεία καταγραφής (logs) για έως 90 ημέρες για λόγους ασφαλείας</li>
+          <li>Δεδομένα που ενδέχεται να απαιτούνται για συμμόρφωση με νομικές υποχρεώσεις (έως 12 μήνες)</li>
+        </ul>
+      </div>
+
+      <div class="notice">
+        <strong>⚠️ Σημείωση:</strong> Η διαγραφή είναι <strong>μη αναστρέψιμη</strong>. Μόλις ολοκληρωθεί, δεν μπορούμε να ανακτήσουμε τα δεδομένα σας.
+      </div>
+
+      <h2>💾 Εναλλακτική: Τοπική διαγραφή</h2>
+      <p>Αν θέλετε να διαγράψετε μόνο τα τοπικά δεδομένα από τη συσκευή σας, μπορείτε απλά να <strong>απεγκαταστήσετε την εφαρμογή</strong>. Όλα τα δεδομένα που αποθηκεύονται τοπικά (mood entries, προτιμήσεις) θα διαγραφούν αυτόματα.</p>
+
+      <h2>❓ Ερωτήσεις</h2>
+      <p>Για απορίες σχετικά με τη διαγραφή λογαριασμού, επικοινωνήστε στο <a href="mailto:privacy@aurawellnessapp.com">privacy@aurawellnessapp.com</a>.</p>
+    </div>
+
+    <!-- ========== ENGLISH ========== -->
+    <div class="lang-content" id="lang-en">
+      <h1>Delete Account</h1>
+      <p class="subtitle">How to request deletion of your Aura Free account and data.</p>
+
+      <h2>🗑️ Deletion Request</h2>
+      <p>You can request the deletion of your account and all associated data by sending an email from the address you use to sign in to the app.</p>
+
+      <div class="email-box">
+        📧 <a href="mailto:privacy@aurawellnessapp.com?subject=Account%20Deletion%20Request%20-%20Aura%20Free&body=Hello%2C%0A%0AI%20request%20the%20deletion%20of%20my%20Aura%20Free%20account%20and%20all%20associated%20data.%0A%0AAccount%20email%3A%20%5Byour%20email%5D%0A%0AThank%20you.">privacy@aurawellnessapp.com</a>
+      </div>
+
+      <h2>📋 Steps</h2>
+      <ol>
+        <li>Email <strong>privacy@aurawellnessapp.com</strong> <strong>from the address you use to sign in</strong> to the app.</li>
+        <li>Subject: <em>"Account Deletion Request - Aura Free"</em></li>
+        <li>State clearly that you want your account and data deleted.</li>
+        <li>You will receive confirmation within <strong>7 business days</strong>.</li>
+        <li>Deletion is completed within <strong>30 days</strong> of confirmation.</li>
+      </ol>
+
+      <h2>🔐 What data is deleted</h2>
+      <div class="data-list">
+        <h3>Permanently deleted:</h3>
+        <ul>
+          <li>Your email address</li>
+          <li>Mood entries and tracking data</li>
+          <li>Notes and comments you've added</li>
+          <li>Account settings and preferences</li>
+          <li>Local device data (via app uninstall)</li>
+        </ul>
+      </div>
+
+      <div class="data-list">
+        <h3>Retained (in anonymous form):</h3>
+        <ul>
+          <li>Aggregate usage statistics (without personal identification)</li>
+          <li>Security logs for up to 90 days</li>
+          <li>Data required for legal compliance (up to 12 months)</li>
+        </ul>
+      </div>
+
+      <div class="notice">
+        <strong>⚠️ Notice:</strong> Deletion is <strong>irreversible</strong>. Once completed, we cannot recover your data.
+      </div>
+
+      <h2>💾 Alternative: Local deletion</h2>
+      <p>If you only want to delete local data from your device, simply <strong>uninstall the app</strong>. All locally stored data (mood entries, preferences) will be automatically deleted.</p>
+
+      <h2>❓ Questions</h2>
+      <p>For questions about account deletion, contact <a href="mailto:privacy@aurawellnessapp.com">privacy@aurawellnessapp.com</a>.</p>
+    </div>
+
+    <!-- ========== FRANÇAIS ========== -->
+    <div class="lang-content" id="lang-fr">
+      <h1>Supprimer le compte</h1>
+      <p class="subtitle">Comment demander la suppression de votre compte et de vos données Aura Free.</p>
+
+      <h2>🗑️ Demande de suppression</h2>
+      <p>Vous pouvez demander la suppression de votre compte et de toutes les données associées en envoyant un email depuis l'adresse que vous utilisez pour vous connecter à l'application.</p>
+
+      <div class="email-box">
+        📧 <a href="mailto:privacy@aurawellnessapp.com?subject=Account%20Deletion%20Request%20-%20Aura%20Free">privacy@aurawellnessapp.com</a>
+      </div>
+
+      <h2>📋 Étapes</h2>
+      <ol>
+        <li>Envoyez un email à <strong>privacy@aurawellnessapp.com</strong> <strong>depuis l'adresse utilisée pour vous connecter</strong>.</li>
+        <li>Objet : <em>"Account Deletion Request - Aura Free"</em></li>
+        <li>Indiquez clairement que vous souhaitez supprimer votre compte et vos données.</li>
+        <li>Vous recevrez une confirmation sous <strong>7 jours ouvrables</strong>.</li>
+        <li>La suppression est effectuée dans les <strong>30 jours</strong> suivant la confirmation.</li>
+      </ol>
+
+      <h2>🔐 Données supprimées</h2>
+      <div class="data-list">
+        <h3>Supprimées définitivement :</h3>
+        <ul>
+          <li>Votre adresse email</li>
+          <li>Données d'humeur (mood entries)</li>
+          <li>Notes et commentaires ajoutés</li>
+          <li>Paramètres et préférences du compte</li>
+          <li>Données locales sur l'appareil (via désinstallation)</li>
+        </ul>
+      </div>
+
+      <div class="data-list">
+        <h3>Conservées (sous forme anonyme) :</h3>
+        <ul>
+          <li>Statistiques d'utilisation agrégées (sans identification personnelle)</li>
+          <li>Journaux de sécurité jusqu'à 90 jours</li>
+          <li>Données requises pour conformité légale (jusqu'à 12 mois)</li>
+        </ul>
+      </div>
+
+      <div class="notice">
+        <strong>⚠️ Avis :</strong> La suppression est <strong>irréversible</strong>. Une fois terminée, nous ne pouvons pas récupérer vos données.
+      </div>
+
+      <h2>💾 Alternative : Suppression locale</h2>
+      <p>Si vous souhaitez supprimer uniquement les données locales, il suffit de <strong>désinstaller l'application</strong>. Toutes les données stockées localement seront automatiquement supprimées.</p>
+
+      <h2>❓ Questions</h2>
+      <p>Pour toute question, contactez <a href="mailto:privacy@aurawellnessapp.com">privacy@aurawellnessapp.com</a>.</p>
+    </div>
+
+    <!-- ========== SVENSKA ========== -->
+    <div class="lang-content" id="lang-sv">
+      <h1>Radera konto</h1>
+      <p class="subtitle">Så begär du radering av ditt Aura Free-konto och dina data.</p>
+
+      <h2>🗑️ Raderingsförfrågan</h2>
+      <p>Du kan begära radering av ditt konto och all tillhörande data genom att skicka ett e-postmeddelande från adressen du använder för att logga in i appen.</p>
+
+      <div class="email-box">
+        📧 <a href="mailto:privacy@aurawellnessapp.com?subject=Account%20Deletion%20Request%20-%20Aura%20Free">privacy@aurawellnessapp.com</a>
+      </div>
+
+      <h2>📋 Steg</h2>
+      <ol>
+        <li>Skicka e-post till <strong>privacy@aurawellnessapp.com</strong> <strong>från adressen du loggar in med</strong>.</li>
+        <li>Ämne: <em>"Account Deletion Request - Aura Free"</em></li>
+        <li>Ange tydligt att du vill ta bort ditt konto och dina data.</li>
+        <li>Du får en bekräftelse inom <strong>7 arbetsdagar</strong>.</li>
+        <li>Raderingen slutförs inom <strong>30 dagar</strong> efter bekräftelse.</li>
+      </ol>
+
+      <h2>🔐 Vilka data raderas</h2>
+      <div class="data-list">
+        <h3>Raderas permanent:</h3>
+        <ul>
+          <li>Din e-postadress</li>
+          <li>Humördata (mood entries)</li>
+          <li>Anteckningar och kommentarer du lagt till</li>
+          <li>Kontoinställningar och preferenser</li>
+          <li>Lokal data på enheten (via avinstallation)</li>
+        </ul>
+      </div>
+
+      <div class="data-list">
+        <h3>Behålls (i anonym form):</h3>
+        <ul>
+          <li>Aggregerad användningsstatistik (utan personlig identifiering)</li>
+          <li>Säkerhetsloggar i upp till 90 dagar</li>
+          <li>Data som krävs för juridisk efterlevnad (upp till 12 månader)</li>
+        </ul>
+      </div>
+
+      <div class="notice">
+        <strong>⚠️ Notera:</strong> Radering är <strong>oåterkallelig</strong>. När den är klar kan vi inte återställa dina data.
+      </div>
+
+      <h2>💾 Alternativ: Lokal radering</h2>
+      <p>Om du endast vill radera lokal data från enheten, <strong>avinstallera appen</strong>. All lokalt lagrad data kommer automatiskt raderas.</p>
+
+      <h2>❓ Frågor</h2>
+      <p>För frågor om kontoradering, kontakta <a href="mailto:privacy@aurawellnessapp.com">privacy@aurawellnessapp.com</a>.</p>
+    </div>
+
+    <a href="index.html" class="back-link">← Back to Aura Free</a>
+
+    <footer>
+      <img src="dg-studio-logo.png" alt="DG Creative Studio" class="dg-logo">
+      <p>© 2026 DG Creative Studio · All rights reserved</p>
+      <p style="margin-top: 8px;">
+        <a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms of Service</a>
+      </p>
+    </footer>
+
+  </div>
+</div>
+
+<script>
+  function setLang(lang) {
+    document.querySelectorAll('.lang-content').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.lang-switch button').forEach(el => el.classList.remove('active'));
+    document.getElementById('lang-' + lang).classList.add('active');
+    document.getElementById('btn-' + lang).classList.add('active');
+    document.documentElement.lang = lang;
+    try { localStorage.setItem('aura-lang', lang); } catch(e) {}
+  }
+
+  // Auto-detect language on load
+  (function() {
+    let lang = null;
+    try { lang = localStorage.getItem('aura-lang'); } catch(e) {}
+    if (!lang) {
+      const params = new URLSearchParams(window.location.search);
+      lang = params.get('lang');
+    }
+    if (!lang) {
+      const nav = (navigator.language || 'el').toLowerCase();
+      if (nav.startsWith('en')) lang = 'en';
+      else if (nav.startsWith('fr')) lang = 'fr';
+      else if (nav.startsWith('sv')) lang = 'sv';
+      else lang = 'el';
+    }
+    if (['el','en','fr','sv'].includes(lang)) setLang(lang);
+  })();
+</script>
+
+</body>
+</html>
