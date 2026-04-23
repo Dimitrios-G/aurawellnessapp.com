@@ -162,36 +162,77 @@
   <!-- ΕΛΛΗΝΙΚΑ -->
   <article id="el" class="active" lang="el">
     <h2>Πολιτική Απορρήτου</h2>
-    <p class="effective">Aura Free — Ημερομηνία ισχύος: 19 Απριλίου 2026</p>
+    <p class="effective">Aura Free — Ημερομηνία ισχύος: 23 Απριλίου 2026</p>
 
     <h3>1. Εισαγωγή</h3>
     <p>Καλώς ήρθατε στο Aura Free. Η παρούσα Πολιτική Απορρήτου εξηγεί πώς το DG Creative Studio («εμείς», «εμάς» ή «μας») συλλέγει, χρησιμοποιεί και προστατεύει τα προσωπικά σας δεδομένα κατά τη χρήση της εφαρμογής Aura Free. Με τη χρήση της εφαρμογής αποδέχεστε τη συλλογή και τη χρήση των δεδομένων όπως περιγράφεται εδώ.</p>
 
     <h3>2. Δεδομένα που συλλέγουμε</h3>
-    <h4>2.1 Δεδομένα που παρέχετε εσείς</h4>
+    <h4>2.1 Δεδομένα λογαριασμού (απαιτούμενα)</h4>
     <ul>
-      <li><strong>Διεύθυνση email:</strong> Χρησιμοποιείται για ταυτοποίηση και αποστολή κωδικού μίας χρήσης (OTP).</li>
-      <li><strong>Δεδομένα διάθεσης και ευεξίας:</strong> Πληροφορίες που καταχωρείτε στην εφαρμογή, όπως ημερήσιες εγγραφές διάθεσης, σημειώσεις και καταχωρήσεις ευεξίας.</li>
+      <li><strong>Διεύθυνση email:</strong> Χρησιμοποιείται για ταυτοποίηση, επαλήθευση νέας συσκευής (OTP) και επικοινωνία σχετικά με τον λογαριασμό.</li>
+      <li><strong>Όνομα χρήστη (username):</strong> Μοναδικό αναγνωριστικό που επιλέγετε κατά την εγγραφή, το οποίο χρησιμοποιείτε για τη σύνδεσή σας στην εφαρμογή.</li>
+      <li><strong>PIN:</strong> 4-ψήφιος κωδικός που ορίζετε για γρήγορη είσοδο. Αποθηκεύεται <strong>μόνο ως κρυπτογραφικό hash (SHA-256)</strong> — ο αρχικός αριθμός δεν αποθηκεύεται ποτέ σε κανέναν διακομιστή.</li>
     </ul>
-    <h4>2.2 Αυτόματα συλλεγόμενα δεδομένα</h4>
+    <h4>2.2 Προαιρετικά στοιχεία προφίλ</h4>
     <ul>
-      <li><strong>Δεδομένα χρήσης:</strong> Αλληλεπιδράσεις με την εφαρμογή και αναφορές σφαλμάτων.</li>
-      <li><strong>Πληροφορίες συσκευής:</strong> Τύπος συσκευής, έκδοση λειτουργικού συστήματος και έκδοση εφαρμογής.</li>
+      <li><strong>Ονοματεπώνυμο, ημερομηνία γέννησης, χώρα, avatar:</strong> Προαιρετικά στοιχεία που μπορείτε να προσθέσετε στο προφίλ σας.</li>
+    </ul>
+    <h4>2.3 Δεδομένα ευεξίας που καταχωρείτε</h4>
+    <ul>
+      <li><strong>Εγγραφές διάθεσης (mood entries):</strong> Ημερήσιες καταχωρήσεις διάθεσης, επίπεδο ενέργειας, προαιρετικές σημειώσεις και timestamps. Αποθηκεύονται στη συλλογή <code>moods</code> του Firestore, συνδεδεμένες με το user ID σας.</li>
+      <li><strong>Απαντήσεις σε τεστ (Mind Tests):</strong> Αν συμπληρώσετε τα ερωτηματολόγια ευεξίας (π.χ. GAD-7), οι απαντήσεις αποθηκεύονται <strong>τοπικά στη συσκευή σας</strong> (AsyncStorage) και δεν μεταφέρονται σε διακομιστή.</li>
+    </ul>
+    <h4>2.4 Δεδομένα συσκευών (trusted devices)</h4>
+    <p>Για λόγους ασφαλείας, διατηρούμε λίστα των συσκευών που έχετε εξουσιοδοτήσει (subcollection <code>users/{uid}/devices</code>). Για κάθε συσκευή αποθηκεύουμε:</p>
+    <ul>
+      <li>Μοναδικό αναγνωριστικό συσκευής (device ID)</li>
+      <li>Πλατφόρμα (Android / iOS)</li>
+      <li>Ετικέτα συσκευής (π.χ. «Samsung SM-A525F (android 14)»)</li>
+      <li>Ημερομηνία εγγραφής και τελευταίας χρήσης (registeredAt, lastSeen)</li>
+    </ul>
+    <h4>2.5 Δεδομένα ασφαλείας OTP</h4>
+    <ul>
+      <li>Κωδικοί μίας χρήσης (OTP) αποθηκεύονται αποκλειστικά ως κρυπτογραφικά hash (SHA-256) με χρόνο λήξης. Ο αρχικός κωδικός δεν αποθηκεύεται ποτέ.</li>
+      <li>Μετρητές αποτυχημένων προσπαθειών και χρόνοι cooldown, για την αποτροπή επιθέσεων brute-force.</li>
+    </ul>
+    <h4>2.6 Δεδομένα που αποθηκεύονται ΜΟΝΟ τοπικά στη συσκευή σας</h4>
+    <p>Τα παρακάτω αποθηκεύονται αποκλειστικά στο AsyncStorage της συσκευής σας και <strong>δεν</strong> μεταφέρονται σε διακομιστή:</p>
+    <ul>
+      <li>Επιλογή γλώσσας διεπαφής (el / en / fr / sv)</li>
+      <li>Προτιμήσεις εμφάνισης (θέμα, ρυθμίσεις ειδοποιήσεων)</li>
+      <li>Αποτελέσματα ερωτηματολογίων ευεξίας (π.χ. GAD-7 scores)</li>
+      <li>Στατιστικά mini-games που εμπεριέχει η εφαρμογή</li>
+      <li>Cache του hash του PIN (για offline αυθεντικοποίηση)</li>
+    </ul>
+    <h4>2.7 Αυτόματα συλλεγόμενα δεδομένα</h4>
+    <ul>
+      <li><strong>Πληροφορίες συσκευής:</strong> Τύπος συσκευής, έκδοση λειτουργικού συστήματος, έκδοση εφαρμογής — συλλέγονται μόνο ως μέρος της εγγραφής trusted device.</li>
+      <li><strong>Τεχνικά logs:</strong> Αναφορές σφαλμάτων και αρχεία καταγραφής Cloud Functions (χωρίς προσωπικά δεδομένα πέραν του user ID) για την εξασφάλιση της λειτουργίας.</li>
     </ul>
 
     <h3>3. Χρήση των δεδομένων σας</h3>
     <ul>
       <li>Παροχή και συντήρηση της λειτουργικότητας της εφαρμογής</li>
-      <li>Αποστολή κωδικών OTP στο email σας</li>
-      <li>Αποθήκευση και εμφάνιση των δεδομένων διάθεσης και ευεξίας σας</li>
+      <li>Ταυτοποίηση χρήστη μέσω username + PIN και αποστολή OTP σε νέες συσκευές</li>
+      <li>Διαχείριση λίστας εμπιστευμένων συσκευών (trusted devices)</li>
+      <li>Αποθήκευση και εμφάνιση των εγγραφών διάθεσης και ιστορικού σας</li>
+      <li>Παροχή «Light Analysis» — αυτόματες insights βασισμένες σε κανόνες, τοπικά στη συσκευή σας</li>
+      <li>Προστασία από επιθέσεις brute-force (progressive cooldown, PIN lockout)</li>
       <li>Βελτίωση της εφαρμογής και επίλυση τεχνικών προβλημάτων</li>
       <li>Συμμόρφωση με νομικές υποχρεώσεις</li>
     </ul>
 
     <h3>4. Αποθήκευση και ασφάλεια δεδομένων</h3>
-    <p>Τα δεδομένα σας αποθηκεύονται ασφαλώς στο <strong>Google Firebase (Firestore)</strong>, σε διακομιστές εντός της <strong>Ευρωπαϊκής Ένωσης</strong>. Εφαρμόζουμε κατάλληλα τεχνικά και οργανωτικά μέτρα για την προστασία των προσωπικών σας δεδομένων από μη εξουσιοδοτημένη πρόσβαση, απώλεια ή κοινοποίηση.</p>
-    <p>Οι κωδικοί OTP αποθηκεύονται αποκλειστικά ως κρυπτογραφικά hash (SHA-256) — το αρχικό ψηφίο δεν αποθηκεύεται ποτέ σε κανέναν διακομιστή.</p>
+    <p>Τα δεδομένα λογαριασμού σας αποθηκεύονται ασφαλώς στο <strong>Google Firebase (Firestore + Authentication)</strong>, σε διακομιστές εντός της <strong>Ευρωπαϊκής Ένωσης</strong> (περιοχή <code>europe-west1</code>). Εφαρμόζουμε κατάλληλα τεχνικά και οργανωτικά μέτρα για την προστασία των προσωπικών σας δεδομένων από μη εξουσιοδοτημένη πρόσβαση, απώλεια ή κοινοποίηση.</p>
+    <p>Οι κωδικοί PIN και OTP αποθηκεύονται αποκλειστικά ως κρυπτογραφικά hash (SHA-256) — ούτε ο αρχικός PIN ούτε τα OTP ψηφία αποθηκεύονται ποτέ σε κανέναν διακομιστή.</p>
     <p>Τα email αποστέλλονται μέσω <strong>Firebase Cloud Functions</strong> (europe-west1) σε συνεργασία με το <strong>Resend</strong>. Οι διευθύνσεις email χρησιμοποιούνται αποκλειστικά για ταυτοποίηση και δεν κοινοποιούνται σε τρίτους για σκοπούς προώθησης.</p>
+    <p><strong>Μέτρα προστασίας έναντι brute-force:</strong></p>
+    <ul>
+      <li><strong>Progressive email cooldown:</strong> Μετά από 3 αποτυχημένες προσπάθειες κωδικού cooldown 5 λεπτών, στις 6 cooldown 15 λεπτών, στις 9 cooldown 60 λεπτών.</li>
+      <li><strong>PIN lockout:</strong> Μετά από 3 λανθασμένες προσπάθειες PIN, η συσκευή αφαιρείται από τη λίστα trusted devices και ο χρήστης πρέπει να επαληθεύσει ξανά μέσω OTP στο email.</li>
+      <li><strong>Έλεγχος trusted device:</strong> Κάθε σύνδεση επαληθεύεται server-side ώστε να μην επιτρέπεται παράκαμψη μέσω τοπικού cache.</li>
+    </ul>
 
     <h3>5. Διατήρηση δεδομένων</h3>
     <p>Διατηρούμε τα προσωπικά σας δεδομένα όσο ο λογαριασμός σας είναι ενεργός ή όσο απαιτείται για την παροχή της υπηρεσίας. Μπορείτε να ζητήσετε διαγραφή των δεδομένων σας οποιαδήποτε στιγμή, επικοινωνώντας μαζί μας.</p>
@@ -231,36 +272,77 @@
   <!-- ENGLISH -->
   <article id="en" lang="en">
     <h2>Privacy Policy</h2>
-    <p class="effective">Aura Free — Effective Date: April 19, 2026</p>
+    <p class="effective">Aura Free — Effective Date: April 23, 2026</p>
 
     <h3>1. Introduction</h3>
     <p>Welcome to Aura Free. This Privacy Policy explains how DG Creative Studio ("we", "us", or "our") collects, uses, and protects your personal information when you use the Aura Free mobile application. By using the App, you agree to the collection and use of information as described in this policy.</p>
 
     <h3>2. Information We Collect</h3>
-    <h4>2.1 Information you provide</h4>
+    <h4>2.1 Account data (required)</h4>
     <ul>
-      <li><strong>Email address:</strong> Used for authentication via one-time password (OTP).</li>
-      <li><strong>Mood and wellbeing data:</strong> Information you enter into the app such as daily mood logs, notes, and wellness entries.</li>
+      <li><strong>Email address:</strong> Used for authentication, new-device verification (OTP), and account communications.</li>
+      <li><strong>Username:</strong> A unique identifier you choose at sign-up and use to log in to the App.</li>
+      <li><strong>PIN:</strong> A 4-digit code you set for quick login. Stored <strong>only as a cryptographic hash (SHA-256)</strong> — the original PIN is never stored on any server.</li>
     </ul>
-    <h4>2.2 Information collected automatically</h4>
+    <h4>2.2 Optional profile fields</h4>
     <ul>
-      <li><strong>Usage data:</strong> App interactions and crash reports for improving the service.</li>
-      <li><strong>Device information:</strong> Device type, operating system version, and app version.</li>
+      <li><strong>Name, date of birth, country, avatar:</strong> Optional profile details you can add.</li>
+    </ul>
+    <h4>2.3 Wellness data you enter</h4>
+    <ul>
+      <li><strong>Mood entries:</strong> Daily mood logs, energy level, optional notes, and timestamps. Stored in the Firestore <code>moods</code> collection, linked to your user ID.</li>
+      <li><strong>Mind test responses:</strong> If you complete wellness questionnaires (e.g. GAD-7), responses are stored <strong>locally on your device</strong> (AsyncStorage) and are not transmitted to any server.</li>
+    </ul>
+    <h4>2.4 Trusted-device data</h4>
+    <p>For security, we maintain a list of devices you have authorized (subcollection <code>users/{uid}/devices</code>). For each device we store:</p>
+    <ul>
+      <li>Unique device ID</li>
+      <li>Platform (Android / iOS)</li>
+      <li>Device label (e.g. "Samsung SM-A525F (android 14)")</li>
+      <li>Registration and last-seen timestamps (registeredAt, lastSeen)</li>
+    </ul>
+    <h4>2.5 OTP security data</h4>
+    <ul>
+      <li>One-time passwords (OTP) are stored only as cryptographic hashes (SHA-256) with expiry timestamps. The original code is never stored.</li>
+      <li>Failed-attempt counters and cooldown timestamps, used to prevent brute-force attacks.</li>
+    </ul>
+    <h4>2.6 Data stored ONLY locally on your device</h4>
+    <p>The following is stored exclusively in your device's AsyncStorage and is <strong>never</strong> transmitted to any server:</p>
+    <ul>
+      <li>Interface language preference (el / en / fr / sv)</li>
+      <li>Display preferences (theme, notification settings)</li>
+      <li>Wellness questionnaire results (e.g. GAD-7 scores)</li>
+      <li>Stats for mini-games included in the App</li>
+      <li>Cached PIN hash (for offline authentication)</li>
+    </ul>
+    <h4>2.7 Automatically collected data</h4>
+    <ul>
+      <li><strong>Device information:</strong> Device type, OS version, app version — collected only as part of trusted-device registration.</li>
+      <li><strong>Technical logs:</strong> Error reports and Cloud Functions logs (no personal data beyond user ID) to maintain service operation.</li>
     </ul>
 
     <h3>3. How We Use Your Information</h3>
     <ul>
       <li>Provide and maintain the App's functionality</li>
-      <li>Send authentication OTP codes to your email</li>
-      <li>Store and display your mood and wellness data</li>
+      <li>Authenticate users via username + PIN, and send OTP codes to new devices</li>
+      <li>Manage the list of trusted devices</li>
+      <li>Store and display your mood entries and history</li>
+      <li>Provide "Light Analysis" — rule-based insights computed locally on your device</li>
+      <li>Protect against brute-force attacks (progressive cooldown, PIN lockout)</li>
       <li>Improve the App and fix technical issues</li>
       <li>Comply with legal obligations</li>
     </ul>
 
     <h3>4. Data Storage and Security</h3>
-    <p>Your data is stored securely using <strong>Google Firebase (Firestore)</strong>, located on servers within the <strong>European Union</strong>. We implement appropriate technical and organizational measures to protect your personal data against unauthorized access, loss, or disclosure.</p>
-    <p>OTP codes are stored exclusively as cryptographic hashes (SHA-256) — the original codes are never stored on any server.</p>
+    <p>Your account data is stored securely using <strong>Google Firebase (Firestore + Authentication)</strong>, on servers within the <strong>European Union</strong> (region <code>europe-west1</code>). We implement appropriate technical and organizational measures to protect your personal data against unauthorized access, loss, or disclosure.</p>
+    <p>PIN and OTP codes are stored exclusively as cryptographic hashes (SHA-256) — neither the original PIN nor OTP digits are ever stored on any server.</p>
     <p>Authentication emails are sent via <strong>Firebase Cloud Functions</strong> (europe-west1) in partnership with <strong>Resend</strong>. Email addresses are used solely for authentication and are not shared with third parties for marketing purposes.</p>
+    <p><strong>Brute-force protection measures:</strong></p>
+    <ul>
+      <li><strong>Progressive email cooldown:</strong> After 3 wrong password attempts a 5-minute cooldown applies, at 6 attempts a 15-minute cooldown, at 9 attempts a 60-minute cooldown.</li>
+      <li><strong>PIN lockout:</strong> After 3 wrong PIN attempts, the device is removed from the trusted-devices list and the user must re-verify via OTP sent by email.</li>
+      <li><strong>Trusted-device check:</strong> Every sign-in is verified server-side so that a local cache cannot be used to bypass the check.</li>
+    </ul>
 
     <h3>5. Data Retention</h3>
     <p>We retain your personal data for as long as your account is active or as needed to provide the service. You may request deletion of your data at any time by contacting us.</p>
@@ -300,36 +382,77 @@
   <!-- FRANÇAIS -->
   <article id="fr" lang="fr">
     <h2>Politique de Confidentialité</h2>
-    <p class="effective">Aura Free — Date d'effet : 19 avril 2026</p>
+    <p class="effective">Aura Free — Date d'effet : 23 avril 2026</p>
 
     <h3>1. Introduction</h3>
     <p>Bienvenue sur Aura Free. La présente Politique de Confidentialité explique comment DG Creative Studio (« nous ») collecte, utilise et protège vos données personnelles lors de l'utilisation de l'application mobile Aura Free. En utilisant l'application, vous acceptez la collecte et l'utilisation des informations comme décrit dans cette politique.</p>
 
     <h3>2. Informations que nous collectons</h3>
-    <h4>2.1 Informations que vous fournissez</h4>
+    <h4>2.1 Données de compte (obligatoires)</h4>
     <ul>
-      <li><strong>Adresse e-mail :</strong> Utilisée pour l'authentification via un code à usage unique (OTP).</li>
-      <li><strong>Données d'humeur et de bien-être :</strong> Informations que vous saisissez dans l'application, telles que les journaux d'humeur quotidiens, notes et entrées de bien-être.</li>
+      <li><strong>Adresse e-mail :</strong> Utilisée pour l'authentification, la vérification d'un nouvel appareil (OTP) et les communications liées au compte.</li>
+      <li><strong>Nom d'utilisateur :</strong> Identifiant unique que vous choisissez à l'inscription et utilisez pour vous connecter à l'application.</li>
+      <li><strong>PIN :</strong> Code à 4 chiffres que vous définissez pour une connexion rapide. Stocké <strong>uniquement sous forme de hachage cryptographique (SHA-256)</strong> — le code PIN original n'est jamais stocké sur aucun serveur.</li>
     </ul>
-    <h4>2.2 Informations collectées automatiquement</h4>
+    <h4>2.2 Champs de profil facultatifs</h4>
     <ul>
-      <li><strong>Données d'utilisation :</strong> Interactions avec l'application et rapports d'erreurs.</li>
-      <li><strong>Informations sur l'appareil :</strong> Type d'appareil, version du système d'exploitation et version de l'application.</li>
+      <li><strong>Nom, date de naissance, pays, avatar :</strong> Informations facultatives que vous pouvez ajouter à votre profil.</li>
+    </ul>
+    <h4>2.3 Données de bien-être que vous saisissez</h4>
+    <ul>
+      <li><strong>Entrées d'humeur :</strong> Journaux d'humeur quotidiens, niveau d'énergie, notes facultatives et horodatages. Stockés dans la collection Firestore <code>moods</code>, liés à votre identifiant utilisateur.</li>
+      <li><strong>Réponses aux tests (Mind Tests) :</strong> Si vous complétez des questionnaires de bien-être (p. ex. GAD-7), les réponses sont stockées <strong>localement sur votre appareil</strong> (AsyncStorage) et ne sont pas transmises à un serveur.</li>
+    </ul>
+    <h4>2.4 Données des appareils de confiance</h4>
+    <p>Pour des raisons de sécurité, nous maintenons une liste des appareils que vous avez autorisés (sous-collection <code>users/{uid}/devices</code>). Pour chaque appareil, nous stockons :</p>
+    <ul>
+      <li>Identifiant unique de l'appareil</li>
+      <li>Plateforme (Android / iOS)</li>
+      <li>Étiquette de l'appareil (p. ex. « Samsung SM-A525F (android 14) »)</li>
+      <li>Horodatages d'enregistrement et de dernière utilisation (registeredAt, lastSeen)</li>
+    </ul>
+    <h4>2.5 Données de sécurité OTP</h4>
+    <ul>
+      <li>Les codes à usage unique (OTP) sont stockés uniquement sous forme de hachages cryptographiques (SHA-256) avec des horodatages d'expiration. Le code original n'est jamais stocké.</li>
+      <li>Compteurs de tentatives échouées et horodatages de cooldown, pour prévenir les attaques par force brute.</li>
+    </ul>
+    <h4>2.6 Données stockées UNIQUEMENT localement sur votre appareil</h4>
+    <p>Les éléments suivants sont stockés exclusivement dans l'AsyncStorage de votre appareil et <strong>ne sont jamais</strong> transmis à un serveur :</p>
+    <ul>
+      <li>Préférence de langue de l'interface (el / en / fr / sv)</li>
+      <li>Préférences d'affichage (thème, paramètres de notification)</li>
+      <li>Résultats des questionnaires de bien-être (p. ex. scores GAD-7)</li>
+      <li>Statistiques des mini-jeux inclus dans l'application</li>
+      <li>Cache du hachage du PIN (pour l'authentification hors ligne)</li>
+    </ul>
+    <h4>2.7 Informations collectées automatiquement</h4>
+    <ul>
+      <li><strong>Informations sur l'appareil :</strong> Type d'appareil, version du système d'exploitation, version de l'application — collectées uniquement dans le cadre de l'enregistrement d'un appareil de confiance.</li>
+      <li><strong>Journaux techniques :</strong> Rapports d'erreurs et journaux des Cloud Functions (aucune donnée personnelle au-delà de l'ID utilisateur) pour assurer le bon fonctionnement du service.</li>
     </ul>
 
     <h3>3. Utilisation de vos données</h3>
     <ul>
       <li>Fournir et maintenir les fonctionnalités de l'application</li>
-      <li>Envoyer les codes OTP d'authentification à votre e-mail</li>
-      <li>Stocker et afficher vos données d'humeur et de bien-être</li>
+      <li>Authentifier les utilisateurs via nom d'utilisateur + PIN, et envoyer des codes OTP aux nouveaux appareils</li>
+      <li>Gérer la liste des appareils de confiance</li>
+      <li>Stocker et afficher vos entrées d'humeur et votre historique</li>
+      <li>Fournir la « Light Analysis » — des insights basés sur des règles, calculés localement sur votre appareil</li>
+      <li>Se protéger contre les attaques par force brute (cooldown progressif, verrouillage PIN)</li>
       <li>Améliorer l'application et résoudre les problèmes techniques</li>
       <li>Respecter les obligations légales</li>
     </ul>
 
     <h3>4. Stockage et sécurité des données</h3>
-    <p>Vos données sont stockées en toute sécurité sur <strong>Google Firebase (Firestore)</strong>, sur des serveurs situés au sein de l'<strong>Union Européenne</strong>. Nous mettons en œuvre des mesures techniques et organisationnelles appropriées pour protéger vos données personnelles contre tout accès non autorisé, toute perte ou divulgation.</p>
-    <p>Les codes OTP sont stockés exclusivement sous forme de hachages cryptographiques (SHA-256) — les codes d'origine ne sont jamais stockés sur aucun serveur.</p>
+    <p>Vos données de compte sont stockées en toute sécurité sur <strong>Google Firebase (Firestore + Authentication)</strong>, sur des serveurs situés au sein de l'<strong>Union Européenne</strong> (région <code>europe-west1</code>). Nous mettons en œuvre des mesures techniques et organisationnelles appropriées pour protéger vos données personnelles contre tout accès non autorisé, toute perte ou divulgation.</p>
+    <p>Les codes PIN et OTP sont stockés exclusivement sous forme de hachages cryptographiques (SHA-256) — ni le PIN original ni les chiffres OTP ne sont jamais stockés sur aucun serveur.</p>
     <p>Les e-mails d'authentification sont envoyés via <strong>Firebase Cloud Functions</strong> (europe-west1) en partenariat avec <strong>Resend</strong>. Les adresses e-mail sont utilisées uniquement pour l'authentification et ne sont pas partagées avec des tiers à des fins marketing.</p>
+    <p><strong>Mesures de protection contre la force brute :</strong></p>
+    <ul>
+      <li><strong>Cooldown d'e-mail progressif :</strong> Après 3 tentatives incorrectes, un cooldown de 5 minutes s'applique, à 6 tentatives 15 minutes, à 9 tentatives 60 minutes.</li>
+      <li><strong>Verrouillage PIN :</strong> Après 3 tentatives incorrectes du PIN, l'appareil est retiré de la liste des appareils de confiance et l'utilisateur doit se vérifier à nouveau par OTP par e-mail.</li>
+      <li><strong>Vérification d'appareil de confiance :</strong> Chaque connexion est vérifiée côté serveur afin qu'aucun cache local ne puisse contourner le contrôle.</li>
+    </ul>
 
     <h3>5. Conservation des données</h3>
     <p>Nous conservons vos données personnelles tant que votre compte est actif ou selon les besoins pour fournir le service. Vous pouvez demander la suppression de vos données à tout moment en nous contactant.</p>
@@ -369,36 +492,77 @@
   <!-- SVENSKA -->
   <article id="sv" lang="sv">
     <h2>Integritetspolicy</h2>
-    <p class="effective">Aura Free — Gäller från: 19 april 2026</p>
+    <p class="effective">Aura Free — Gäller från: 23 april 2026</p>
 
     <h3>1. Introduktion</h3>
     <p>Välkommen till Aura Free. Denna integritetspolicy förklarar hur DG Creative Studio ("vi", "oss" eller "vår") samlar in, använder och skyddar dina personuppgifter när du använder mobilappen Aura Free. Genom att använda appen godkänner du insamling och användning av information enligt denna policy.</p>
 
     <h3>2. Information vi samlar in</h3>
-    <h4>2.1 Information du tillhandahåller</h4>
+    <h4>2.1 Kontodata (obligatoriskt)</h4>
     <ul>
-      <li><strong>E-postadress:</strong> Används för autentisering via engångslösenord (OTP).</li>
-      <li><strong>Humör- och välmåendedata:</strong> Information du anger i appen, såsom dagliga humörloggar, anteckningar och välmåendeposter.</li>
+      <li><strong>E-postadress:</strong> Används för autentisering, verifiering av ny enhet (OTP) och kontokommunikation.</li>
+      <li><strong>Användarnamn:</strong> En unik identifierare du väljer vid registrering och använder för att logga in i appen.</li>
+      <li><strong>PIN:</strong> En 4-siffrig kod du anger för snabb inloggning. Lagras <strong>endast som en kryptografisk hash (SHA-256)</strong> — den ursprungliga PIN-koden lagras aldrig på någon server.</li>
     </ul>
-    <h4>2.2 Information som samlas in automatiskt</h4>
+    <h4>2.2 Valfria profilfält</h4>
     <ul>
-      <li><strong>Användningsdata:</strong> Interaktioner med appen och kraschrapporter.</li>
-      <li><strong>Enhetsinformation:</strong> Enhetstyp, version av operativsystem och appversion.</li>
+      <li><strong>Namn, födelsedatum, land, avatar:</strong> Valfria profiluppgifter som du kan lägga till.</li>
+    </ul>
+    <h4>2.3 Välmåendedata du anger</h4>
+    <ul>
+      <li><strong>Humörposter (mood entries):</strong> Dagliga humörloggar, energinivå, valfria anteckningar och tidsstämplar. Lagras i Firestore-samlingen <code>moods</code>, kopplad till ditt användar-ID.</li>
+      <li><strong>Svar på tester (Mind Tests):</strong> Om du fyller i välmåendeformulär (t.ex. GAD-7) lagras svaren <strong>lokalt på din enhet</strong> (AsyncStorage) och överförs inte till någon server.</li>
+    </ul>
+    <h4>2.4 Data för betrodda enheter</h4>
+    <p>Av säkerhetsskäl underhåller vi en lista över enheter du har auktoriserat (undersamling <code>users/{uid}/devices</code>). För varje enhet lagrar vi:</p>
+    <ul>
+      <li>Unik enhets-ID</li>
+      <li>Plattform (Android / iOS)</li>
+      <li>Enhetsetikett (t.ex. "Samsung SM-A525F (android 14)")</li>
+      <li>Registrerings- och senast-sedd-tidsstämplar (registeredAt, lastSeen)</li>
+    </ul>
+    <h4>2.5 OTP-säkerhetsdata</h4>
+    <ul>
+      <li>Engångslösenord (OTP) lagras endast som kryptografiska hashvärden (SHA-256) med utgångstidsstämplar. Originalkoden lagras aldrig.</li>
+      <li>Räknare för misslyckade försök och cooldown-tidsstämplar, används för att förhindra brute force-attacker.</li>
+    </ul>
+    <h4>2.6 Data som lagras ENDAST lokalt på din enhet</h4>
+    <p>Följande lagras uteslutande i enhetens AsyncStorage och <strong>överförs aldrig</strong> till någon server:</p>
+    <ul>
+      <li>Inställning för gränssnittsspråk (el / en / fr / sv)</li>
+      <li>Visningsinställningar (tema, aviseringsinställningar)</li>
+      <li>Resultat från välmåendeformulär (t.ex. GAD-7-poäng)</li>
+      <li>Statistik för minispel som ingår i appen</li>
+      <li>Cachad PIN-hash (för offline-autentisering)</li>
+    </ul>
+    <h4>2.7 Automatiskt insamlade data</h4>
+    <ul>
+      <li><strong>Enhetsinformation:</strong> Enhetstyp, OS-version, appversion — samlas endast in som en del av registrering av betrodd enhet.</li>
+      <li><strong>Tekniska loggar:</strong> Felrapporter och Cloud Functions-loggar (inga personuppgifter utöver användar-ID) för att upprätthålla driften av tjänsten.</li>
     </ul>
 
     <h3>3. Hur vi använder din information</h3>
     <ul>
       <li>Tillhandahålla och underhålla appens funktionalitet</li>
-      <li>Skicka OTP-koder för autentisering till din e-post</li>
-      <li>Lagra och visa dina humör- och välmåendedata</li>
+      <li>Autentisera användare via användarnamn + PIN, och skicka OTP-koder till nya enheter</li>
+      <li>Hantera listan över betrodda enheter</li>
+      <li>Lagra och visa dina humörposter och historik</li>
+      <li>Tillhandahålla "Light Analysis" — regelbaserade insikter beräknade lokalt på din enhet</li>
+      <li>Skydda mot brute force-attacker (progressiv cooldown, PIN-utlåsning)</li>
       <li>Förbättra appen och åtgärda tekniska problem</li>
       <li>Följa juridiska skyldigheter</li>
     </ul>
 
     <h3>4. Datalagring och säkerhet</h3>
-    <p>Dina data lagras säkert via <strong>Google Firebase (Firestore)</strong>, på servrar inom <strong>Europeiska unionen</strong>. Vi tillämpar lämpliga tekniska och organisatoriska åtgärder för att skydda dina personuppgifter mot obehörig åtkomst, förlust eller avslöjande.</p>
-    <p>OTP-koder lagras uteslutande som kryptografiska hashvärden (SHA-256) — originalkoderna lagras aldrig på någon server.</p>
+    <p>Dina kontodata lagras säkert via <strong>Google Firebase (Firestore + Authentication)</strong>, på servrar inom <strong>Europeiska unionen</strong> (region <code>europe-west1</code>). Vi tillämpar lämpliga tekniska och organisatoriska åtgärder för att skydda dina personuppgifter mot obehörig åtkomst, förlust eller avslöjande.</p>
+    <p>PIN- och OTP-koder lagras uteslutande som kryptografiska hashvärden (SHA-256) — varken original-PIN eller OTP-siffror lagras någonsin på någon server.</p>
     <p>Autentiserings-e-postmeddelanden skickas via <strong>Firebase Cloud Functions</strong> (europe-west1) i samarbete med <strong>Resend</strong>. E-postadresser används endast för autentisering och delas inte med tredje part för marknadsföringsändamål.</p>
+    <p><strong>Skyddsåtgärder mot brute force:</strong></p>
+    <ul>
+      <li><strong>Progressiv e-post-cooldown:</strong> Efter 3 felaktiga lösenordsförsök gäller 5 minuters cooldown, vid 6 försök 15 minuter, vid 9 försök 60 minuter.</li>
+      <li><strong>PIN-utlåsning:</strong> Efter 3 felaktiga PIN-försök tas enheten bort från listan över betrodda enheter och användaren måste verifiera igen via OTP som skickas via e-post.</li>
+      <li><strong>Kontroll av betrodd enhet:</strong> Varje inloggning verifieras server-side så att en lokal cache inte kan användas för att kringgå kontrollen.</li>
+    </ul>
 
     <h3>5. Datalagring</h3>
     <p>Vi behåller dina personuppgifter så länge ditt konto är aktivt eller så länge det behövs för att tillhandahålla tjänsten. Du kan begära radering av dina data när som helst genom att kontakta oss.</p>
