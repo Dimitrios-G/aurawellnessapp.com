@@ -112,6 +112,27 @@
   article a { color: var(--accent); text-decoration: none; }
   article a:hover { text-decoration: underline; }
   article strong { font-weight: 600; color: var(--text); }
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin: 40px 0 8px;
+    padding: 10px 18px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--accent);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .back-link:hover {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+    text-decoration: none;
+  }
   footer {
     margin-top: 64px;
     padding-top: 32px;
@@ -611,6 +632,8 @@
        Webbplats: <a href="https://aurawellnessapp.com">https://aurawellnessapp.com</a></p>
   </article>
 
+  <a href="index.html" id="back-link" class="back-link">← <span id="back-link-text">Επιστροφή στην αρχική</span></a>
+
   <footer>
     <img src="dg-studio-logo.png" alt="DG Creative Studio">
     <div class="footer-text">
@@ -633,15 +656,23 @@
     fr: 'Politique de Confidentialité',
     sv: 'Integritetspolicy'
   };
+  const backLabels = {
+    el: 'Επιστροφή στην αρχική',
+    en: 'Back to home',
+    fr: 'Retour à l\'accueil',
+    sv: 'Tillbaka till startsidan'
+  };
   const buttons = document.querySelectorAll('.lang-switch button');
   const articles = document.querySelectorAll('article');
   const subtitleEl = document.getElementById('subtitle');
+  const backLinkTextEl = document.getElementById('back-link-text');
 
   function setLang(lang) {
     buttons.forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
     articles.forEach(a => a.classList.toggle('active', a.id === lang));
     document.documentElement.lang = lang;
     subtitleEl.textContent = subtitles[lang] || '';
+    if (backLinkTextEl) backLinkTextEl.textContent = backLabels[lang] || backLabels.en;
     try { localStorage.setItem('aura-lang', lang); } catch(e){}
     document.title = (subtitles[lang] || 'Privacy Policy') + ' · Aura Free';
   }
