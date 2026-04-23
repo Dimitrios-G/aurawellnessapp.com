@@ -199,36 +199,53 @@
     <!-- ========== ΕΛΛΗΝΙΚΑ ========== -->
     <div class="lang-content active" id="lang-el">
       <h1>Διαγραφή Λογαριασμού</h1>
-      <p class="subtitle">Πώς να διαγράψετε τον λογαριασμό σας και τα δεδομένα σας στο Aura Free.</p>
+      <p class="subtitle">Πώς να ζητήσετε τη διαγραφή του λογαριασμού σας και των δεδομένων σας στο Aura Free.</p>
 
-      <h2>🗑️ Διαγραφή λογαριασμού</h2>
-      <p>Μπορείτε να διαγράψετε τον λογαριασμό σας και όλα τα συσχετισμένα δεδομένα ανά πάσα στιγμή, απευθείας από τις <strong>Ρυθμίσεις</strong> της εφαρμογής.</p>
+      <h2>🗑️ Αίτημα διαγραφής</h2>
+      <p>Μπορείτε να ζητήσετε τη διαγραφή του λογαριασμού σας και όλων των συσχετισμένων δεδομένων στέλνοντας ένα email από τη διεύθυνση που χρησιμοποιείτε για τη σύνδεση στην εφαρμογή.</p>
+
+      <div class="email-box">
+        📧 <a href="mailto:DG.creative.studio@proton.me?subject=Account%20Deletion%20Request%20-%20Aura%20Free&body=Γεια%20σας%2C%0A%0AΖητώ%20τη%20διαγραφή%20του%20λογαριασμού%20μου%20και%20όλων%20των%20δεδομένων%20μου%20στο%20Aura%20Free.%0A%0AEmail%20λογαριασμού%3A%20%5Bτο%20email%20σας%5D%0A%0AΕυχαριστώ.">DG.creative.studio@proton.me</a>
+      </div>
 
       <h2>📋 Βήματα</h2>
       <ol>
-        <li>Ανοίξτε την εφαρμογή και μεταβείτε στις <strong>Ρυθμίσεις</strong>.</li>
-        <li>Πατήστε <strong>Διαγραφή Λογαριασμού</strong>.</li>
-        <li>Επιβεβαιώστε ότι θέλετε να διαγραφούν ο λογαριασμός σας και τα δεδομένα σας.</li>
-        <li>Ο λογαριασμός και τα δεδομένα σας διαγράφονται <strong>άμεσα</strong>.</li>
+        <li>Στείλτε email στο <strong>DG.creative.studio@proton.me</strong> <strong>από τη διεύθυνση που χρησιμοποιείτε για σύνδεση</strong> στην εφαρμογή.</li>
+        <li>Θέμα: <em>"Account Deletion Request - Aura Free"</em></li>
+        <li>Στο μήνυμα αναφέρετε ρητά ότι θέλετε να διαγραφούν ο λογαριασμός σας και τα δεδομένα σας.</li>
+        <li>Θα λάβετε επιβεβαίωση εντός <strong>7 εργάσιμων ημερών</strong>.</li>
+        <li>Η διαγραφή ολοκληρώνεται εντός <strong>30 ημερών</strong> από την επιβεβαίωση.</li>
       </ol>
 
       <h2>🔐 Τι δεδομένα διαγράφονται</h2>
       <div class="data-list">
-        <h3>Διαγράφονται οριστικά:</h3>
+        <h3>Διαγράφονται οριστικά από τους διακομιστές μας:</h3>
         <ul>
-          <li>Η διεύθυνση email σας</li>
-          <li>Τα δεδομένα διάθεσης (mood entries)</li>
-          <li>Σημειώσεις και σχόλια που έχετε καταχωρήσει</li>
-          <li>Ρυθμίσεις και προτιμήσεις λογαριασμού</li>
-          <li>Τοπικά δεδομένα στη συσκευή (μέσω απεγκατάστασης εφαρμογής)</li>
+          <li>Ο λογαριασμός σας στο Firebase Authentication (email + UID)</li>
+          <li>Το έγγραφο χρήστη (username, ονοματεπώνυμο, ημερομηνία γέννησης, χώρα, avatar, PIN hash)</li>
+          <li>Η λίστα εμπιστευμένων συσκευών (<code>users/{uid}/devices</code>)</li>
+          <li>Όλες οι εγγραφές διάθεσης στη συλλογή <code>moods</code> (mood, ενέργεια, σημειώσεις, timestamps)</li>
+          <li>Τα OTP hashes και οι μετρητές ασφαλείας (failed attempts, cooldowns)</li>
+          <li>Οποιαδήποτε άλλα μεταδεδομένα σχετικά με τον λογαριασμό σας</li>
         </ul>
       </div>
 
       <div class="data-list">
-        <h3>Διατηρούνται (σε ανώνυμη μορφή):</h3>
+        <h3>Τοπικά δεδομένα στη συσκευή σας:</h3>
+        <p style="margin:4px 0 8px;">Τα παρακάτω δεδομένα αποθηκεύονται μόνο τοπικά και διαγράφονται αυτόματα όταν <strong>απεγκαταστήσετε την εφαρμογή</strong>:</p>
         <ul>
+          <li>Επιλογή γλώσσας και προτιμήσεις εμφάνισης</li>
+          <li>Αποτελέσματα ερωτηματολογίων ευεξίας (π.χ. GAD-7 scores)</li>
+          <li>Στατιστικά mini-games</li>
+          <li>Cache του hash του PIN και τοπικό user profile</li>
+        </ul>
+      </div>
+
+      <div class="data-list">
+        <h3>Διατηρούνται (σε ανώνυμη μορφή ή για νομικούς λόγους):</h3>
+        <ul>
+          <li>Αρχεία καταγραφής Cloud Functions για έως 90 ημέρες για λόγους ασφαλείας (χωρίς προσωπικά δεδομένα πέραν του UID)</li>
           <li>Συγκεντρωτικά στατιστικά χρήσης (χωρίς προσωπική ταυτοποίηση)</li>
-          <li>Αρχεία καταγραφής (logs) για έως 90 ημέρες για λόγους ασφαλείας</li>
           <li>Δεδομένα που ενδέχεται να απαιτούνται για συμμόρφωση με νομικές υποχρεώσεις (έως 12 μήνες)</li>
         </ul>
       </div>
@@ -247,36 +264,53 @@
     <!-- ========== ENGLISH ========== -->
     <div class="lang-content" id="lang-en">
       <h1>Delete Account</h1>
-      <p class="subtitle">How to delete your Aura Free account and data.</p>
+      <p class="subtitle">How to request deletion of your Aura Free account and data.</p>
 
-      <h2>🗑️ Delete Account</h2>
-      <p>You can delete your account and all associated data at any time, directly from the app's <strong>Settings</strong>.</p>
+      <h2>🗑️ Deletion Request</h2>
+      <p>You can request the deletion of your account and all associated data by sending an email from the address you use to sign in to the app.</p>
+
+      <div class="email-box">
+        📧 <a href="mailto:DG.creative.studio@proton.me?subject=Account%20Deletion%20Request%20-%20Aura%20Free&body=Hello%2C%0A%0AI%20request%20the%20deletion%20of%20my%20Aura%20Free%20account%20and%20all%20associated%20data.%0A%0AAccount%20email%3A%20%5Byour%20email%5D%0A%0AThank%20you.">DG.creative.studio@proton.me</a>
+      </div>
 
       <h2>📋 Steps</h2>
       <ol>
-        <li>Open the app and go to <strong>Settings</strong>.</li>
-        <li>Tap <strong>Delete Account</strong>.</li>
-        <li>Confirm that you want your account and data deleted.</li>
-        <li>Your account and data are deleted <strong>immediately</strong>.</li>
+        <li>Email <strong>DG.creative.studio@proton.me</strong> <strong>from the address you use to sign in</strong> to the app.</li>
+        <li>Subject: <em>"Account Deletion Request - Aura Free"</em></li>
+        <li>State clearly that you want your account and data deleted.</li>
+        <li>You will receive confirmation within <strong>7 business days</strong>.</li>
+        <li>Deletion is completed within <strong>30 days</strong> of confirmation.</li>
       </ol>
 
       <h2>🔐 What data is deleted</h2>
       <div class="data-list">
-        <h3>Permanently deleted:</h3>
+        <h3>Permanently deleted from our servers:</h3>
         <ul>
-          <li>Your email address</li>
-          <li>Mood entries and tracking data</li>
-          <li>Notes and comments you've added</li>
-          <li>Account settings and preferences</li>
-          <li>Local device data (via app uninstall)</li>
+          <li>Your Firebase Authentication account (email + UID)</li>
+          <li>Your user document (username, full name, date of birth, country, avatar, PIN hash)</li>
+          <li>Your trusted-devices list (<code>users/{uid}/devices</code>)</li>
+          <li>All mood entries in the <code>moods</code> collection (mood, energy, notes, timestamps)</li>
+          <li>OTP hashes and security counters (failed attempts, cooldowns)</li>
+          <li>Any other metadata related to your account</li>
         </ul>
       </div>
 
       <div class="data-list">
-        <h3>Retained (in anonymous form):</h3>
+        <h3>Local data on your device:</h3>
+        <p style="margin:4px 0 8px;">The following is stored only locally and is automatically removed when you <strong>uninstall the app</strong>:</p>
         <ul>
+          <li>Language preference and display settings</li>
+          <li>Wellness questionnaire results (e.g. GAD-7 scores)</li>
+          <li>Mini-game stats</li>
+          <li>Cached PIN hash and local user profile</li>
+        </ul>
+      </div>
+
+      <div class="data-list">
+        <h3>Retained (in anonymous form or for legal reasons):</h3>
+        <ul>
+          <li>Cloud Functions logs for up to 90 days for security purposes (no personal data beyond UID)</li>
           <li>Aggregate usage statistics (without personal identification)</li>
-          <li>Security logs for up to 90 days</li>
           <li>Data required for legal compliance (up to 12 months)</li>
         </ul>
       </div>
@@ -295,36 +329,53 @@
     <!-- ========== FRANÇAIS ========== -->
     <div class="lang-content" id="lang-fr">
       <h1>Supprimer le compte</h1>
-      <p class="subtitle">Comment supprimer votre compte Aura Free et vos données.</p>
+      <p class="subtitle">Comment demander la suppression de votre compte et de vos données Aura Free.</p>
 
-      <h2>🗑️ Supprimer le compte</h2>
-      <p>Vous pouvez supprimer votre compte et toutes les données associées à tout moment, directement depuis les <strong>Paramètres</strong> de l'application.</p>
+      <h2>🗑️ Demande de suppression</h2>
+      <p>Vous pouvez demander la suppression de votre compte et de toutes les données associées en envoyant un email depuis l'adresse que vous utilisez pour vous connecter à l'application.</p>
+
+      <div class="email-box">
+        📧 <a href="mailto:DG.creative.studio@proton.me?subject=Account%20Deletion%20Request%20-%20Aura%20Free">DG.creative.studio@proton.me</a>
+      </div>
 
       <h2>📋 Étapes</h2>
       <ol>
-        <li>Ouvrez l'application et accédez aux <strong>Paramètres</strong>.</li>
-        <li>Appuyez sur <strong>Supprimer le compte</strong>.</li>
-        <li>Confirmez que vous souhaitez supprimer votre compte et vos données.</li>
-        <li>Votre compte et vos données sont supprimés <strong>immédiatement</strong>.</li>
+        <li>Envoyez un email à <strong>DG.creative.studio@proton.me</strong> <strong>depuis l'adresse utilisée pour vous connecter</strong>.</li>
+        <li>Objet : <em>"Account Deletion Request - Aura Free"</em></li>
+        <li>Indiquez clairement que vous souhaitez supprimer votre compte et vos données.</li>
+        <li>Vous recevrez une confirmation sous <strong>7 jours ouvrables</strong>.</li>
+        <li>La suppression est effectuée dans les <strong>30 jours</strong> suivant la confirmation.</li>
       </ol>
 
       <h2>🔐 Données supprimées</h2>
       <div class="data-list">
-        <h3>Supprimées définitivement :</h3>
+        <h3>Supprimées définitivement de nos serveurs :</h3>
         <ul>
-          <li>Votre adresse email</li>
-          <li>Données d'humeur (mood entries)</li>
-          <li>Notes et commentaires ajoutés</li>
-          <li>Paramètres et préférences du compte</li>
-          <li>Données locales sur l'appareil (via désinstallation)</li>
+          <li>Votre compte Firebase Authentication (e-mail + UID)</li>
+          <li>Votre document utilisateur (nom d'utilisateur, nom complet, date de naissance, pays, avatar, hash du PIN)</li>
+          <li>Votre liste d'appareils de confiance (<code>users/{uid}/devices</code>)</li>
+          <li>Toutes les entrées d'humeur dans la collection <code>moods</code> (humeur, énergie, notes, horodatages)</li>
+          <li>Les hachages OTP et les compteurs de sécurité (tentatives échouées, cooldowns)</li>
+          <li>Toute autre métadonnée liée à votre compte</li>
         </ul>
       </div>
 
       <div class="data-list">
-        <h3>Conservées (sous forme anonyme) :</h3>
+        <h3>Données locales sur votre appareil :</h3>
+        <p style="margin:4px 0 8px;">Les éléments suivants sont stockés uniquement localement et sont automatiquement supprimés lorsque vous <strong>désinstallez l'application</strong> :</p>
         <ul>
+          <li>Préférence de langue et paramètres d'affichage</li>
+          <li>Résultats des questionnaires de bien-être (p. ex. scores GAD-7)</li>
+          <li>Statistiques des mini-jeux</li>
+          <li>Hachage du PIN en cache et profil utilisateur local</li>
+        </ul>
+      </div>
+
+      <div class="data-list">
+        <h3>Conservées (sous forme anonyme ou pour raisons légales) :</h3>
+        <ul>
+          <li>Journaux des Cloud Functions jusqu'à 90 jours pour des raisons de sécurité (sans données personnelles au-delà de l'UID)</li>
           <li>Statistiques d'utilisation agrégées (sans identification personnelle)</li>
-          <li>Journaux de sécurité jusqu'à 90 jours</li>
           <li>Données requises pour conformité légale (jusqu'à 12 mois)</li>
         </ul>
       </div>
@@ -343,36 +394,53 @@
     <!-- ========== SVENSKA ========== -->
     <div class="lang-content" id="lang-sv">
       <h1>Radera konto</h1>
-      <p class="subtitle">Hur du tar bort ditt Aura Free-konto och dina uppgifter.</p>
+      <p class="subtitle">Så begär du radering av ditt Aura Free-konto och dina data.</p>
 
-      <h2>🗑️ Radera konto</h2>
-      <p>Du kan när som helst ta bort ditt konto och alla tillhörande uppgifter direkt från appens <strong>Inställningar</strong>.</p>
+      <h2>🗑️ Raderingsförfrågan</h2>
+      <p>Du kan begära radering av ditt konto och all tillhörande data genom att skicka ett e-postmeddelande från adressen du använder för att logga in i appen.</p>
+
+      <div class="email-box">
+        📧 <a href="mailto:DG.creative.studio@proton.me?subject=Account%20Deletion%20Request%20-%20Aura%20Free">DG.creative.studio@proton.me</a>
+      </div>
 
       <h2>📋 Steg</h2>
       <ol>
-        <li>Öppna appen och gå till <strong>Inställningar</strong>.</li>
-        <li>Tryck på <strong>Ta bort konto</strong>.</li>
-        <li>Bekräfta att du vill ta bort ditt konto och dina uppgifter.</li>
-        <li>Ditt konto och dina uppgifter tas bort <strong>omedelbart</strong>.</li>
+        <li>Skicka e-post till <strong>DG.creative.studio@proton.me</strong> <strong>från adressen du loggar in med</strong>.</li>
+        <li>Ämne: <em>"Account Deletion Request - Aura Free"</em></li>
+        <li>Ange tydligt att du vill ta bort ditt konto och dina data.</li>
+        <li>Du får en bekräftelse inom <strong>7 arbetsdagar</strong>.</li>
+        <li>Raderingen slutförs inom <strong>30 dagar</strong> efter bekräftelse.</li>
       </ol>
 
       <h2>🔐 Vilka data raderas</h2>
       <div class="data-list">
-        <h3>Raderas permanent:</h3>
+        <h3>Raderas permanent från våra servrar:</h3>
         <ul>
-          <li>Din e-postadress</li>
-          <li>Humördata (mood entries)</li>
-          <li>Anteckningar och kommentarer du lagt till</li>
-          <li>Kontoinställningar och preferenser</li>
-          <li>Lokal data på enheten (via avinstallation)</li>
+          <li>Ditt Firebase Authentication-konto (e-post + UID)</li>
+          <li>Ditt användardokument (användarnamn, fullständigt namn, födelsedatum, land, avatar, PIN-hash)</li>
+          <li>Din lista över betrodda enheter (<code>users/{uid}/devices</code>)</li>
+          <li>Alla humörposter i samlingen <code>moods</code> (humör, energi, anteckningar, tidsstämplar)</li>
+          <li>OTP-hashvärden och säkerhetsräknare (misslyckade försök, cooldowns)</li>
+          <li>All annan metadata relaterad till ditt konto</li>
         </ul>
       </div>
 
       <div class="data-list">
-        <h3>Behålls (i anonym form):</h3>
+        <h3>Lokal data på din enhet:</h3>
+        <p style="margin:4px 0 8px;">Följande lagras endast lokalt och raderas automatiskt när du <strong>avinstallerar appen</strong>:</p>
         <ul>
+          <li>Språkinställning och visningsinställningar</li>
+          <li>Resultat från välmåendeformulär (t.ex. GAD-7-poäng)</li>
+          <li>Statistik för minispel</li>
+          <li>Cachad PIN-hash och lokal användarprofil</li>
+        </ul>
+      </div>
+
+      <div class="data-list">
+        <h3>Behålls (i anonym form eller av juridiska skäl):</h3>
+        <ul>
+          <li>Cloud Functions-loggar i upp till 90 dagar av säkerhetsskäl (inga personuppgifter utöver UID)</li>
           <li>Aggregerad användningsstatistik (utan personlig identifiering)</li>
-          <li>Säkerhetsloggar i upp till 90 dagar</li>
           <li>Data som krävs för juridisk efterlevnad (upp till 12 månader)</li>
         </ul>
       </div>
